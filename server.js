@@ -26,7 +26,7 @@ const mongoose = require("mongoose");
 // });
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: process.env.OPEN,
 });
 const transporter = nodemailer.createTransport({
   service: "gmail",
