@@ -12,18 +12,18 @@ app.use(cors());
 app.use(bodyParser.json());
 const { OpenAI } = require("openai");
 const mongoose = require("mongoose");
-// mongoose
-//   .connect("mongodb+srv://kishore:1234@cluster0.w7w19gv.mongodb.net/gformDB", {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   .then(() => console.log("Mongoose connected"))
-//   .catch((err) => console.log(err));
+mongoose
+  .connect("mongodb+srv://kishore:1234@cluster0.w7w19gv.mongodb.net/gformDB", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Mongoose connected"))
+  .catch((err) => console.log(err));
 
-// const Query = mongoose.model("Query", {
-//   content: String,
-//   date: Date,
-// });
+const Query = mongoose.model("Query", {
+  content: String,
+  date: Date,
+});
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN,
@@ -81,12 +81,12 @@ app.post("/generate-sop", async (req, res) => {
   // Process the response from the OpenAI API
   const generatedText = completion.choices[0].text;
   console.log(generatedText);
-  // const date = new Date();
-  // const newone = new Query({
-  //   prompt,
-  //   date,
-  // });
-  // await newone.save();
+  const date = new Date();
+  const newone = new Query({
+    prompt,
+    date,
+  });
+  await newone.save();
 
   // Add content to the PDF
   doc.fontSize(16).text(`Statement of Purpose for ${name}`);
