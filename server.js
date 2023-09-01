@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 //const openai = require("openai");
+const { AbortController } = require('abort-controller');
+
 const nodemailer = require("nodemailer");
 const PDFDocument = require("pdfkit");
 const cors = require("cors");
